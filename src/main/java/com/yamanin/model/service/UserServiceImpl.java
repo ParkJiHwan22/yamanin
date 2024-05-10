@@ -1,10 +1,12 @@
 package com.yamanin.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.yamanin.model.dao.UserDao;
 import com.yamanin.model.dto.User;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 	private final UserDao userDao;
