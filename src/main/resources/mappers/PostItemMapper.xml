@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yamanin.model.dao.PostItemDao">
+
+    <!-- 모든 게시글 조회 -->
+    <select id="selectAll" resultType="PostItem">
+        SELECT * FROM post_items;
+    </select>
+
+    <!-- postId에 해당하는 게시글 하나 조회 -->
+    <select id="selectOne" parameterType="int" resultType="PostItem">
+        SELECT * FROM post_items WHERE postId = #{postId};
+    </select>
+
+    <!-- title에 해당하는 게시글 조회 -->
+    <select id="selectByTitle" parameterType="string" resultType="PostItem">
+        SELECT * FROM post_items
+        WHERE title LIKE CONCAT('%', #{title}, '%');
+    </select>
+
+    <!-- 새 게시글 등록 -->
+    <insert id="insertPostItem" parameterType="PostItem" useGeneratedKeys="true" keyProperty="postId">
+        INSERT INTO post_items (userId, gameId, seatInfo, seatType, title, detail, price, ticketImg)
+        VALUES (#{userId}, #{gameId}, #{seatInfo}, #{seatType.name()}, #{title}, #{detail}, #{price}, #{ticketImg});
+    </insert>
+
+    <!-- 게시글 정보 업데이트 -->
+    <update id="updatePostItem" parameterType="PostItem">
+        UPDATE post_items
+        SET userId = #{userId}, gameId = #{gameId}, seatInfo = #{seatInfo}, seatType = #{seatType.name()}, title = #{title}, detail = #{detail}, price = #{price}, ticketImg = #{ticketImg}
+        WHERE postId = #{postId};
+    </update>
+
+    <!-- 게시글 삭제 -->
+    <delete id="deletePostItem" parameterType="int">
+        DELETE FROM post_items
+        WHERE postId = #{postId};
+    </delete>
+
+</mapper>
