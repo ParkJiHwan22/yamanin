@@ -4,10 +4,11 @@ CREATE USER 'yamanin'@'localhost' IDENTIFIED BY 'yamanin97';
  GRANT ALL PRIVILEGES ON yamanin_db.* TO 'yamanin'@'localhost';
  FLUSH PRIVILEGES;
  
+ 
 use yamanin_db;
 
 # 1. User Table 생성
-CREATE TABLE User (
+CREATE TABLE IF NOT EXISTS User (
     user_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     login_id VARCHAR(20) NOT NULL,
     password VARCHAR(30) NOT NULL,
@@ -29,7 +30,7 @@ VALUES
 select * from user;
 
 # 2. PostItem Table 생성
-CREATE TABLE PostItem (
+CREATE TABLE IF NOT EXISTS post_items (
     postId INT PRIMARY KEY,
     userId INT,
     gameId INT,
@@ -41,7 +42,7 @@ CREATE TABLE PostItem (
     ticketImg BLOB
 );
 
-INSERT INTO PostItems (postId, userId, gameId, seatInfo, seatType, title, detail, price, ticketImg)
+INSERT INTO post_items (postId, userId, gameId, seatInfo, seatType, title, detail, price, ticketImg)
 VALUES
 (1, 100, 200, 'A1', 'LEFT', 'Exciting Game!', 'Best seat in the house!', 150, 'binary_data_here'),
 
@@ -50,7 +51,7 @@ VALUES
 (3, 102, 202, 'C3', 'LEFT', 'Perfect View!', 'See everything from here.', 180, 'binary_data_here');
 
 # 3. 
-CREATE TABLE Profile (
+CREATE TABLE IF NOT EXISTS Profiles (
     userId INT PRIMARY KEY,
     profileImg BLOB,
     profileText TEXT,
