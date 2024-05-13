@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yamanin.model.dao.QuestionDao">
+
+    <!-- 질문 전체 조회 -->
+    <select id="selectAll" resultType="Question">
+        SELECT * FROM question_list;
+    </select>
+
+    <!-- 질문 등록 -->
+    <insert id="insertQuestion" parameterType="Question" useGeneratedKeys="true" keyProperty="qnaId">
+        INSERT INTO question_list (qna_id, user_id, detail, qna_type)
+        VALUES (#{post_id}, #{user_id}, #{detail}, #{qnaType.name()});
+    </insert>
+
+    <!-- 질문 수정 -->
+    <update id="updateQuestion" parameterType="Question">
+        UPDATE question_list
+        SET post_id = #{post_id}, user_id = #{user_id}, detail = #{detail}, qna_type = #{qna_type.name()}
+        WHERE qnaId = #{qnaId};
+    </update>
+
+    <!-- 질문 삭제 -->
+    <delete id="deleteQuestion" parameterType="int">
+        DELETE FROM question_list 
+        WHERE qnaId = #{qnaId};
+    </delete>
+
+</mapper>
