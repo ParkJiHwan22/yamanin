@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -31,6 +32,13 @@ public class UserRestController {
 	public UserRestController(UserService userService) {
 		this.userService = userService;
 	}
+	
+	// 유저 ID로 검색
+	@GetMapping("/{userId}")
+	public ResponseEntity<User> getUserById(@PathVariable("userId") int userId) {
+        User user = userService.getUserById(userId);
+        return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
+    }
 	
 	// 유저 등록 (JSON형태로 보낸다)
 	@PostMapping("/adduser")
