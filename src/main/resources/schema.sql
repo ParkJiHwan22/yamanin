@@ -5,6 +5,7 @@ CREATE USER 'yamanin'@'localhost' IDENTIFIED BY 'yamanin97';
  FLUSH PRIVILEGES;
  
  
+ 
 use yamanin_db;
 
 # 1. User Table 생성
@@ -30,7 +31,8 @@ VALUES
 select * from user;
 
 # 2. PostItem Table 생성
-CREATE TABLE IF NOT EXISTS post_items (
+DROP TABLE IF EXISTS post_items;
+CREATE TABLE post_items (
     postId INT PRIMARY KEY,
     userId INT,
     gameId INT,
@@ -51,7 +53,9 @@ VALUES
 (3, 102, 202, 'C3', 'LEFT', 'Perfect View!', 'See everything from here.', 180, 'binary_data_here');
 
 # 3. 
-CREATE TABLE IF NOT EXISTS Profiles (
+DROP TABLE IF EXISTS Profiles;
+
+CREATE TABLE Profiles (
     userId INT PRIMARY KEY,
     profileImg BLOB,
     profileText TEXT,
