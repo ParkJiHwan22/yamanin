@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yamanin.model.dao.UserDao;
+import com.yamanin.model.dto.Profile;
 import com.yamanin.model.dto.User;
 
 @Service
@@ -16,6 +17,12 @@ public class UserServiceImpl implements UserService {
 		this.userDao = userDao;
 	}
 
+	// 아이디로 유저 검색
+	@Override
+	public User getUserById(int userId) {
+		return userDao.selectOne(userId);
+	}
+	
 	// 게시글 작성
 	@Override
 	public boolean writeUser(User user) {
@@ -33,5 +40,4 @@ public class UserServiceImpl implements UserService {
 	public boolean removeUser(int userId) {
 		return userDao.deleteUser(userId) == 1;
 	}
-
 }
