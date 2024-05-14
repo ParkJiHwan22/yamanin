@@ -91,7 +91,7 @@ VALUES
 (2, 'How to improve shooting skills?', 'ANSWER', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (3, 'Recommended gear for beginners?', 'ANSWER', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-select * from question;
+-- select * from question;
 
 
 # 5. bookList
@@ -134,4 +134,22 @@ VALUES
 (2, 202, 'Book seats for championship game', 'unread', CURRENT_TIMESTAMP),
 (3, 203, 'Booking for local tournament', 'unread', CURRENT_TIMESTAMP);
 
-SELECT * FROM alarm;
+-- SELECT * FROM alarm; 
+
+DROP TABLE IF EXISTS report;
+CREATE TABLE report (
+    report_id INT AUTO_INCREMENT PRIMARY KEY,
+    post_id BIGINT,
+    user_id BIGINT,
+    game_id BIGINT,
+    report_detail TINYTEXT,
+    created_date DATETIME
+);
+
+INSERT INTO report (post_id, user_id, game_id, report_detail, created_date) 
+VALUES
+(101, 1001, 2001, 'Spam content', CURRENT_TIMESTAMP),
+(102, 1002, 2002, 'Offensive language', CURRENT_TIMESTAMP),
+(103, 1003, 2003, 'Inappropriate image', CURRENT_TIMESTAMP),
+(104, 1004, 2004, 'Harassment', CURRENT_TIMESTAMP),
+(105, 1005, 2005, 'Fake news', CURRENT_TIMESTAMP);
