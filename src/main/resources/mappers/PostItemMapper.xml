@@ -20,15 +20,14 @@
 
     <!-- 새 게시글 등록 -->
     <insert id="insertPostItem" parameterType="PostItem" useGeneratedKeys="true" keyProperty="postId">
-        INSERT INTO post_items (userId, gameId, seatInfo, seatType, title, detail, price, ticketImg)
-        VALUES (#{userId}, #{gameId}, #{seatInfo}, #{seatType.name()}, #{title}, #{detail}, #{price}, #{ticketImg});
+        INSERT INTO post_items (userId, gameId, seatInfo, seatType, title, detail, price, ticketImg, viewCnt, createdDate, updatedDate)
+        VALUES (#{userId}, #{gameId}, #{seatInfo}, #{seatType.name()}, #{title}, #{detail}, #{price}, #{ticketImg}, #{viewCnt}, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
     </insert>
 
     <!-- 게시글 정보 업데이트 -->
     <update id="updatePostItem" parameterType="PostItem">
         UPDATE post_items
-        SET userId = #{userId}, gameId = #{gameId}, seatInfo = #{seatInfo}, seatType = #{seatType.name()}, title = #{title}, detail = #{detail}, price = #{price}, ticketImg = #{ticketImg}
-        WHERE postId = #{postId};
+        SET userId = #{userId}, gameId = #{gameId}, seatInfo = #{seatInfo}, seatType = #{seatType.name()}, title = #{title}, detail = #{detail}, price = #{price}, ticketImg = #{ticketImg}, viewCnt = #{viewCnt}, updatedDate = CURRENT_TIMESTAMP() 
     </update>
 
     <!-- 게시글 삭제 -->
