@@ -4,25 +4,25 @@
 
     <!-- 질문 전체 조회 -->
     <select id="selectAll" resultType="Question">
-        SELECT * FROM question_list;
+        SELECT * FROM question;
     </select>
 
     <!-- 질문 등록 -->
     <insert id="insertQuestion" parameterType="Question" useGeneratedKeys="true" keyProperty="qnaId">
-        INSERT INTO question_list (qna_id, user_id, detail, qna_type)
-        VALUES (#{post_id}, #{user_id}, #{detail}, #{qnaType.name()});
+        INSERT INTO question (user_id, detail, qna_type, createdDate, updatedDate)
+        VALUES (#{userId}, #{detail}, #{qna_type}, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
     </insert>
 
     <!-- 질문 수정 -->
     <update id="updateQuestion" parameterType="Question">
-        UPDATE question_list
-        SET post_id = #{post_id}, user_id = #{user_id}, detail = #{detail}, qna_type = #{qna_type.name()}
+        UPDATE question
+    	SET user_id = #{userId}, detail = #{detail}, qna_type = #{qna_type}, updatedDate = CURRENT_TIMESTAMP()
         WHERE qnaId = #{qnaId};
     </update>
 
     <!-- 질문 삭제 -->
     <delete id="deleteQuestion" parameterType="int">
-        DELETE FROM question_list 
+        DELETE FROM question 
         WHERE qnaId = #{qnaId};
     </delete>
 

@@ -12,6 +12,9 @@ public class PostItem {
     private String detail;
     private int price;
     private byte[] ticketImg;
+    private int viewCnt;
+    private String createdDate;
+    private String updatedDate;
 	
     // SeatType Enum 정의
     public enum SeatType {
@@ -33,7 +36,7 @@ public class PostItem {
     }
 
 	public PostItem(int postId, int userId, int gameId, String seatInfo, SeatType seatType, String title, String detail,
-			int price, byte[] ticketImg) {
+			int price, byte[] ticketImg, int viewCnt, String createdDate, String updatedDate) {
 		super();
 		this.postId = postId;
 		this.userId = userId;
@@ -44,6 +47,9 @@ public class PostItem {
 		this.detail = detail;
 		this.price = price;
 		this.ticketImg = ticketImg;
+		this.viewCnt = viewCnt;
+		this.createdDate = createdDate;
+		this.updatedDate = updatedDate;
 	}
 
 	public int getPostId() {
@@ -118,12 +124,36 @@ public class PostItem {
 		this.ticketImg = ticketImg;
 	}
 
+	public int getViewCnt() {
+		return viewCnt;
+	}
+
+	public void setViewCnt(int viewCnt) {
+		this.viewCnt = viewCnt;
+	}
+
+	public String getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(String createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(String updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
 	@Override
 	public String toString() {
 		return "PostItem [postId=" + postId + ", userId=" + userId + ", gameId=" + gameId + ", seatInfo=" + seatInfo
 				+ ", seatType=" + seatType + ", title=" + title + ", detail=" + detail + ", price=" + price
-				+ ", ticketImg=" + Arrays.toString(ticketImg) + "]";
+				+ ", ticketImg=" + Arrays.toString(ticketImg) + ", viewCnt=" + viewCnt + ", createdDate=" + createdDate
+				+ ", updatedDate=" + updatedDate + "]";
 	}
-    
     
 }

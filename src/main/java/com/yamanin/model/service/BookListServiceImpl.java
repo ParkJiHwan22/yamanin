@@ -3,10 +3,12 @@ package com.yamanin.model.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.yamanin.model.dao.BookListDao;
 import com.yamanin.model.dto.BookList;
 
+@Service
 public class BookListServiceImpl implements BookListService {
 
 	private final BookListDao bookListDao;

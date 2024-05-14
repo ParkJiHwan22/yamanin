@@ -1,15 +1,14 @@
-CREATE DATABASE yamanin_db;
-CREATE USER 'yamanin'@'localhost' IDENTIFIED BY 'yamanin97';
+-- CREATE DATABASE yamanin_db;
+-- CREATE USER 'yamanin'@'localhost' IDENTIFIED BY 'yamanin97';
 
- GRANT ALL PRIVILEGES ON yamanin_db.* TO 'yamanin'@'localhost';
- FLUSH PRIVILEGES;
- 
- 
- 
+--  GRANT ALL PRIVILEGES ON yamanin_db.* TO 'yamanin'@'localhost';
+--  FLUSH PRIVILEGES;
+--  
 use yamanin_db;
 
 # 1. User Table 생성
-CREATE TABLE IF NOT EXISTS User (
+DROP TABLE IF EXISTS User;
+CREATE TABLE User (
     user_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     login_id VARCHAR(20) NOT NULL,
     password VARCHAR(30) NOT NULL,
@@ -28,12 +27,12 @@ VALUES
     ('jane_doe', 'password123', 'Jane Doe', '321-654-0987', 'jane.doe@example.com', 32, 'F', 'Jany'),
     ('sam_smith', 'samsam', 'Sam Smith', '456-123-6789', 'sam.smith@example.com', 24, 'M', 'SSmith');
     
-select * from user;
+# select * from user;
 
 # 2. PostItem Table 생성
 DROP TABLE IF EXISTS post_items;
 CREATE TABLE post_items (
-    postId INT PRIMARY KEY,
+    postId INT AUTO_INCREMENT PRIMARY KEY,
     userId INT,
     gameId INT,
     seatInfo VARCHAR(255),
@@ -41,16 +40,19 @@ CREATE TABLE post_items (
     title VARCHAR(255),
     detail TEXT,
     price INT,
-    ticketImg BLOB
+    ticketImg BLOB,
+    viewCnt INT,
+    createdDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updatedDate DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO post_items (postId, userId, gameId, seatInfo, seatType, title, detail, price, ticketImg)
+INSERT INTO post_items (userId, gameId, seatInfo, seatType, title, detail, price, ticketImg, viewCnt, createdDate, updatedDate)
 VALUES
-(1, 100, 200, 'A1', 'LEFT', 'Exciting Game!', 'Best seat in the house!', 150, 'binary_data_here'),
+(100, 200, 'A1', 'LEFT', 'Exciting Game!', 'Best seat in the house!', 150, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
-(2, 101, 201, 'B2', 'RIGHT', 'Close Action!', 'Right at the sideline.', 200, 'binary_data_here'),
+(101, 201, 'B2', 'RIGHT', 'Close Action!', 'Right at the sideline.', 200, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
-(3, 102, 202, 'C3', 'LEFT', 'Perfect View!', 'See everything from here.', 180, 'binary_data_here');
+(102, 202, 'C3', 'LEFT', 'Perfect View!', 'See everything from here.', 180, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 # 3. 
 DROP TABLE IF EXISTS Profiles;
@@ -69,3 +71,46 @@ VALUES
 (2, 'binary_data_here', 'Excited about every game!', 'Team B'),
 
 (3, 'binary_data_here', 'Supporting since childhood.', 'Team C');
+
+
+# 4. question table
+
+DROP TABLE IF EXISTS question;
+CREATE TABLE question (
+	qnaId INT AUTO_INCREMENT PRIMARY KEY,
+	userId INT,
+	detail TEXT,
+	qnaType VARCHAR(255),
+	createdDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UpdatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO question (userId, detail, qnaType, createdDate, UpdatedDate)
+VALUES
+(1, 'What is the best strategy for early game?', 'QUESTION', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 'How to improve shooting skills?', 'ANSWER', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3, 'Recommended gear for beginners?', 'ANSWER', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+select * from question;
+
+
+# 5. bookList
+
+DROP TABLE IF EXISTS book_list;
+CREATE TABLE book_list (
+    book_id INT AUTO_INCREMENT PRIMARY KEY,
+    post_id INT,
+    user_id INT,
+    game_id INT,
+    book_user_id INT,
+    book_detail TEXT,
+	createdDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	UpdatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+);
+
+INSERT INTO book_list (post_id, user_id, game_id, book_user_id, book_detail, createdDate, UpdatedDate)
+VALUES
+(101, 1, 201, 1, 'Reservation for upcoming match', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(102, 2, 202, 2, 'Book seats for championship game', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(103, 3, 203, 3, 'Booking for local tournament', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);

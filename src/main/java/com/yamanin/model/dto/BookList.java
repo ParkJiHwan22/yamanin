@@ -7,13 +7,22 @@ public class BookList {
 	private int gameId;
 	private int bookUserId;
 	private String bookDetail;
+	private String createdDate;
+	private String updatedDate;
 	
-	public BookList(int bookId, int postId, int userId, int gameId, int bookUserId, String bookDetail) {
+	public BookList() {	
+	}
+
+	public BookList(int bookId, int postId, int userId, int gameId, int bookUserId, String bookDetail,
+			String createdDate, String updatedDate) {
 		this.bookId = bookId;
 		this.postId = postId;
 		this.userId = userId;
+		this.gameId = gameId;
 		this.bookUserId = bookUserId;
 		this.bookDetail = bookDetail;
+		this.createdDate = createdDate;
+		this.updatedDate = updatedDate;
 	}
 
 	public int getBookId() {
@@ -64,13 +73,28 @@ public class BookList {
 		this.bookDetail = bookDetail;
 	}
 
+	public String getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(String createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(String updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
 	@Override
 	public String toString() {
 		return "BookList [bookId=" + bookId + ", postId=" + postId + ", userId=" + userId + ", gameId=" + gameId
-				+ ", bookUserId=" + bookUserId + ", bookDetail=" + bookDetail + "]";
+				+ ", bookUserId=" + bookUserId + ", bookDetail=" + bookDetail + ", createdDate=" + createdDate
+				+ ", updatedDate=" + updatedDate + "]";
 	}
-
-	
 	
 	
 }
