@@ -114,3 +114,24 @@ VALUES
 (101, 1, 201, 1, 'Reservation for upcoming match', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (102, 2, 202, 2, 'Book seats for championship game', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (103, 3, 203, 3, 'Booking for local tournament', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+# 6. Alarm
+
+DROP TABLE IF EXISTS alarm;
+CREATE TABLE alarm (
+    alarm_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    game_id INT,
+    alarm_detail TEXT,
+	alarm_read TEXT,
+	created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    
+);
+
+INSERT INTO alarm (user_id, game_id, alarm_detail, alarm_read, created_date)
+VALUES
+(1, 201, 'Reservation for upcoming match', 'unread', CURRENT_TIMESTAMP),
+(2, 202, 'Book seats for championship game', 'unread', CURRENT_TIMESTAMP),
+(3, 203, 'Booking for local tournament', 'unread', CURRENT_TIMESTAMP);
+
+SELECT * FROM alarm;
