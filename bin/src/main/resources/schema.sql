@@ -1,10 +1,10 @@
-CREATE DATABASE IF NOT EXISTS yamanin_db;
+-- CREATE DATABASE yamanin_db;
 -- CREATE USER 'yamanin'@'localhost' IDENTIFIED BY 'yamanin97';
 
 --  GRANT ALL PRIVILEGES ON yamanin_db.* TO 'yamanin'@'localhost';
 --  FLUSH PRIVILEGES;
 --  
-USE yamanin_db;
+use yamanin_db;
 
 # 1. User Table 생성
 DROP TABLE IF EXISTS User;
@@ -91,7 +91,7 @@ VALUES
 (2, 'How to improve shooting skills?', 'ANSWER', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (3, 'Recommended gear for beginners?', 'ANSWER', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
--- select * from question;
+select * from question;
 
 
 # 5. bookList
@@ -114,42 +114,3 @@ VALUES
 (101, 1, 201, 1, 'Reservation for upcoming match', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (102, 2, 202, 2, 'Book seats for championship game', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (103, 3, 203, 3, 'Booking for local tournament', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-
-# 6. Alarm
-
-DROP TABLE IF EXISTS alarm;
-CREATE TABLE alarm (
-    alarm_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    game_id INT,
-    alarm_detail TEXT,
-	alarm_read TEXT,
-	created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    
-);
-
-INSERT INTO alarm (user_id, game_id, alarm_detail, alarm_read, created_date)
-VALUES
-(1, 201, 'Reservation for upcoming match', 'unread', CURRENT_TIMESTAMP),
-(2, 202, 'Book seats for championship game', 'unread', CURRENT_TIMESTAMP),
-(3, 203, 'Booking for local tournament', 'unread', CURRENT_TIMESTAMP);
-
--- SELECT * FROM alarm; 
-
-DROP TABLE IF EXISTS report;
-CREATE TABLE report (
-    report_id INT AUTO_INCREMENT PRIMARY KEY,
-    post_id BIGINT,
-    user_id BIGINT,
-    game_id BIGINT,
-    report_detail TINYTEXT,
-    created_date DATETIME
-);
-
-INSERT INTO report (post_id, user_id, game_id, report_detail, created_date) 
-VALUES
-(101, 1001, 2001, 'Spam content', CURRENT_TIMESTAMP),
-(102, 1002, 2002, 'Offensive language', CURRENT_TIMESTAMP),
-(103, 1003, 2003, 'Inappropriate image', CURRENT_TIMESTAMP),
-(104, 1004, 2004, 'Harassment', CURRENT_TIMESTAMP),
-(105, 1005, 2005, 'Fake news', CURRENT_TIMESTAMP);
