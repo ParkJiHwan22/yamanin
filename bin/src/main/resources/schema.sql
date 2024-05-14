@@ -1,10 +1,10 @@
-CREATE DATABASE IF NOT EXISTS yamanin_db;
+-- CREATE DATABASE yamanin_db;
 -- CREATE USER 'yamanin'@'localhost' IDENTIFIED BY 'yamanin97';
 
 --  GRANT ALL PRIVILEGES ON yamanin_db.* TO 'yamanin'@'localhost';
 --  FLUSH PRIVILEGES;
 --  
-USE yamanin_db;
+use yamanin_db;
 
 # 1. User Table 생성
 DROP TABLE IF EXISTS User;
