@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yamanin.model.dao.CommentDao">
+
+    <!-- 댓글 전체 조회 -->
+    <select id="selectAll" resultType="Comment">
+        SELECT * FROM comment;
+    </select>
+
+    <!-- 댓글 하나만 아이디로 조회 -->
+    <select id="selectByCommentId" parameterType="int" resultType="Comment">
+        SELECT * FROM comment WHERE comment_id = #{commentId};
+    </select>
+
+    <!-- 댓글 생성 -->
+    <insert id="insertComment" parameterType="Comment" useGeneratedKeys="true" keyProperty="commentId">
+        INSERT INTO comment (post_id, user_id2, game_id2, comment_detail, created_date, updated_date)
+        VALUES (#{postId}, #{userId2}, #{gameId2}, #{commentDetail}, #{createdDate}, #{updatedDate});
+    </insert>
+
+    <!-- 댓글 삭제 -->
+    <delete id="deleteComment" parameterType="int">
+        DELETE FROM comment
+        WHERE WHERE comment_id = #{commentId};
+    </delete>
+
+</mapper>
