@@ -188,18 +188,52 @@ VALUES
 
 DROP TABLE IF EXISTS game_info;
 CREATE TABLE game_info (
-    game_id BIGINT,
+    game_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     game_DT VARCHAR(30),
     homeTeam VARCHAR(10),
     awayTeam VARCHAR(10),
     homeScore INT,
     awayScore INT,
-    game_place VARCHAR(20),
-    PRIMARY KEY (game_id)
+    game_place VARCHAR(20)
 );
 
-INSERT INTO game_info (game_id, Game_DT, homeTeam, awayTeam, homeScore, awayScore, game_place) VALUES
-(1, '2024-05-15 20:00', 'TeamA', 'TeamB', 3, 2, 'StadiumA'),
-(2, '2024-05-16 18:00', 'TeamC', 'TeamD', 1, 1, 'StadiumB'),
-(3, '2024-05-17 21:00', 'TeamE', 'TeamF', 0, 4, 'StadiumC');
+INSERT INTO game_info (Game_DT, homeTeam, awayTeam, homeScore, awayScore, game_place) VALUES
+('2024-05-15 20:00', 'TeamA', 'TeamB', 3, 2, 'StadiumA'),
+('2024-05-16 18:00', 'TeamC', 'TeamD', 1, 1, 'StadiumB'),
+('2024-05-17 21:00', 'TeamE', 'TeamF', 0, 4, 'StadiumC');
+
+DROP TABLE IF EXISTS comment;
+CREATE TABLE comment (
+    comment_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    post_id BIGINT,
+    user_id2 BIGINT,
+    game_id2 BIGINT,
+    comment_detail TINYTEXT,
+    created_date DATETIME,
+    updated_date DATETIME
+);
+
+INSERT INTO Comment (post_id, user_id2, game_id2, comment_detail, created_date, updated_date)
+VALUES
+(101, 1001, 2001, 'This game is awesome!', '2024-05-15 10:00:00', '2024-05-15 10:00:00'),
+(102, 1002, 2002, 'Could be better.', '2024-05-15 11:00:00', '2024-05-15 11:30:00'),
+(103, 1003, 2003, 'Loved the new update!', '2024-05-15 12:00:00', '2024-05-15 12:00:00');
+
+DROP TABLE IF EXISTS recomment;
+CREATE TABLE recomment (
+    recomment_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    comment_id BIGINT,
+    post_id BIGINT,
+    user_id2 BIGINT,
+    game_id2 BIGINT,
+    comment_detail TINYTEXT,
+    created_date DATETIME,
+    updated_date DATETIME
+);
+
+INSERT INTO recomment (comment_id, post_id, user_id2, game_id2, comment_detail, created_date, updated_date)
+VALUES
+(1, 101, 1001, 2001, 'ㄹㅇㅋㅋ', '2024-05-15 10:00:00', '2024-05-15 10:00:00'),
+(2, 102, 1002, 2002, '화이팅', '2024-05-15 11:00:00', '2024-05-15 11:30:00'),
+(3, 103, 1003, 2003, '점검보상을 내놓아라', '2024-05-15 12:00:00', '2024-05-15 12:00:00');
 

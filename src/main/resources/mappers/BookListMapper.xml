@@ -9,8 +9,8 @@
 
     <!-- 예약 글 등록 -->
     <insert id="insertBookList" parameterType="BookList" useGeneratedKeys="true" keyProperty="book_id">
-        INSERT INTO book_list (book_id, post_id, user_id, game_id, book_user_id, book_detail, createdDate, updatedDate)
-        VALUES (#{book_id}, #{post_id}, #{user_id}, #{game_id}, #{book_cnt}, #{book_user_id}, #{book_detail}, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+        INSERT INTO book_list (post_id, user_id, game_id, book_user_id, book_detail, createdDate, updatedDate)
+        VALUES (#{post_id}, #{user_id}, #{game_id}, #{book_cnt}, #{book_user_id}, #{book_detail}, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
     </insert>
 
     <!-- 예약 글 수정 -->

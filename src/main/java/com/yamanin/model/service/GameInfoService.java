@@ -12,7 +12,7 @@ public interface GameInfoService {
 		GameInfo getGameInfoByGameId(int gameId);
 	    
 	    // 경기정보 생성	
-	    public int insert(GameInfo review);
+	    public int insert(GameInfo gameInfo);
 	    
 		// 경기정보 삭제
 	    public int delete(int gameId);
