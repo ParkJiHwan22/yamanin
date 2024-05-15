@@ -185,3 +185,21 @@ VALUES
 (5, 1, 2, 101),
 (3, 2, 3, 102),
 (4, 1, 3, 103);
+
+DROP TABLE IF EXISTS game_info;
+CREATE TABLE game_info (
+    game_id BIGINT,
+    game_DT VARCHAR(30),
+    homeTeam VARCHAR(10),
+    awayTeam VARCHAR(10),
+    homeScore INT,
+    awayScore INT,
+    game_place VARCHAR(20),
+    PRIMARY KEY (game_id)
+);
+
+INSERT INTO game_info (game_id, Game_DT, homeTeam, awayTeam, homeScore, awayScore, game_place) VALUES
+(1, '2024-05-15 20:00', 'TeamA', 'TeamB', 3, 2, 'StadiumA'),
+(2, '2024-05-16 18:00', 'TeamC', 'TeamD', 1, 1, 'StadiumB'),
+(3, '2024-05-17 21:00', 'TeamE', 'TeamF', 0, 4, 'StadiumC');
+
