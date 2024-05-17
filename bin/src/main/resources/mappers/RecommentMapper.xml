@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yamanin.model.dao.RecommentDao">
+
+    <!-- 댓글 전체 조회 -->
+    <select id="selectAll" resultType="Recomment">
+        SELECT * FROM recomment;
+    </select>
+
+    <!-- 댓글 하나만 아이디로 조회 -->
+    <select id="selectByRecommentId" parameterType="int" resultType="Recomment">
+        SELECT * FROM recomment WHERE recomment_id = #{recommentId};
+    </select>
+
+    <!-- 댓글 생성 -->
+    <insert id="insertRecomment" parameterType="Recomment" useGeneratedKeys="true" keyProperty="recommentId">
+        INSERT INTO recomment (comment_id, post_id, user_id2, game_id2, comment_detail, created_date, updated_date)
+        VALUES (#{commentId}, #{postId}, #{userId2}, #{gameId2}, #{commentDetail}, #{createdDate}, #{updatedDate});
+    </insert>
+
+    <!-- 댓글 삭제 -->
+    <delete id="deleteRecomment" parameterType="int">
+        DELETE FROM recomment
+        WHERE WHERE recomment_id = #{recommentId};
+    </delete>
+
+</mapper>

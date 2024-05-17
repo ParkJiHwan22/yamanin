@@ -114,3 +114,126 @@ VALUES
 (101, 1, 201, 1, 'Reservation for upcoming match', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (102, 2, 202, 2, 'Book seats for championship game', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (103, 3, 203, 3, 'Booking for local tournament', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+# 6. Alarm
+
+DROP TABLE IF EXISTS alarm;
+CREATE TABLE alarm (
+    alarm_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    game_id INT,
+    alarm_detail TEXT,
+	alarm_read TEXT,
+	created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    
+);
+
+INSERT INTO alarm (user_id, game_id, alarm_detail, alarm_read, created_date)
+VALUES
+(1, 201, 'Reservation for upcoming match', 'unread', CURRENT_TIMESTAMP),
+(2, 202, 'Book seats for championship game', 'unread', CURRENT_TIMESTAMP),
+(3, 203, 'Booking for local tournament', 'unread', CURRENT_TIMESTAMP);
+
+SELECT * FROM alarm;
+
+# 7. MannerTemp
+DROP TABLE IF EXISTS manner_temp;
+CREATE TABLE manner_temp (
+    user_id INT,
+    review_id INT,
+    marked_id INT,
+	game_id INT,
+	review_cnt INT
+    
+);
+
+-- INSERT INTO manner_temp (user_id, review_id, marked_id, game_id, review_cnt)
+-- VALUES
+-- (1, 1, 201, 'Reservation for upcoming match', 'unread', 5);
+
+-- SELECT * FROM manner_temp;
+
+
+# 8. PostLike
+DROP TABLE IF EXISTS post_like;
+CREATE TABLE post_like (
+    like_id INT AUTO_INCREMENT PRIMARY KEY,
+    post_id INT,
+    user_id INT,
+	game_id INT
+);
+
+-- INSERT INTO post_like (post_id, user_id, game_id)
+-- VALUES
+-- (1, 1, 201);
+
+-- SELECT * FROM post_like;
+
+# 9. Review
+DROP TABLE IF EXISTS review;
+CREATE TABLE review (
+    review_id INT AUTO_INCREMENT PRIMARY KEY,
+    review_point INT,
+    user_id INT,
+	marked_id INT,
+    review_detail INT,
+	created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO review (review_point, user_id, marked_id, review_detail)
+VALUES
+(5, 1, 2, 101),
+(3, 2, 3, 102),
+(4, 1, 3, 103);
+
+DROP TABLE IF EXISTS game_info;
+CREATE TABLE game_info (
+    game_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    game_DT VARCHAR(30),
+    homeTeam VARCHAR(10),
+    awayTeam VARCHAR(10),
+    homeScore INT,
+    awayScore INT,
+    game_place VARCHAR(20)
+);
+
+INSERT INTO game_info (Game_DT, homeTeam, awayTeam, homeScore, awayScore, game_place) VALUES
+('2024-05-15 20:00', 'TeamA', 'TeamB', 3, 2, 'StadiumA'),
+('2024-05-16 18:00', 'TeamC', 'TeamD', 1, 1, 'StadiumB'),
+('2024-05-17 21:00', 'TeamE', 'TeamF', 0, 4, 'StadiumC');
+
+DROP TABLE IF EXISTS comment;
+CREATE TABLE comment (
+    comment_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    post_id BIGINT,
+    user_id2 BIGINT,
+    game_id2 BIGINT,
+    comment_detail TINYTEXT,
+    created_date DATETIME,
+    updated_date DATETIME
+);
+
+INSERT INTO Comment (post_id, user_id2, game_id2, comment_detail, created_date, updated_date)
+VALUES
+(101, 1001, 2001, 'This game is awesome!', '2024-05-15 10:00:00', '2024-05-15 10:00:00'),
+(102, 1002, 2002, 'Could be better.', '2024-05-15 11:00:00', '2024-05-15 11:30:00'),
+(103, 1003, 2003, 'Loved the new update!', '2024-05-15 12:00:00', '2024-05-15 12:00:00');
+
+DROP TABLE IF EXISTS recomment;
+CREATE TABLE recomment (
+    recomment_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    comment_id BIGINT,
+    post_id BIGINT,
+    user_id2 BIGINT,
+    game_id2 BIGINT,
+    comment_detail TINYTEXT,
+    created_date DATETIME,
+    updated_date DATETIME
+);
+
+INSERT INTO recomment (comment_id, post_id, user_id2, game_id2, comment_detail, created_date, updated_date)
+VALUES
+(1, 101, 1001, 2001, 'ㄹㅇㅋㅋ', '2024-05-15 10:00:00', '2024-05-15 10:00:00'),
+(2, 102, 1002, 2002, '화이팅', '2024-05-15 11:00:00', '2024-05-15 11:30:00'),
+(3, 103, 1003, 2003, '점검보상을 내놓아라', '2024-05-15 12:00:00', '2024-05-15 12:00:00');
+
