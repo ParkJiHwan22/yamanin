@@ -6,7 +6,7 @@
 --  
 use yamanin_db;
 
-# 1. User Table 생성
+# 1. User Table 생성a
 DROP TABLE IF EXISTS User;
 CREATE TABLE User (
     user_id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -48,11 +48,25 @@ CREATE TABLE post_items (
 
 INSERT INTO post_items (userId, gameId, seatInfo, seatType, title, detail, price, ticketImg, viewCnt, createdDate, updatedDate)
 VALUES
-(100, 200, 'A1', 'LEFT', 'Exciting Game!', 'Best seat in the house!', 150, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(103, 203, 'D4', 'LEFT', '흥미진진한 경기!', '최고의 자리입니다!', 160, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
-(101, 201, 'B2', 'RIGHT', 'Close Action!', 'Right at the sideline.', 200, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(104, 204, 'E5', 'RIGHT', '가까운 액션!', '사이드라인 바로 옆입니다.', 210, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
-(102, 202, 'C3', 'LEFT', 'Perfect View!', 'See everything from here.', 180, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+(105, 205, 'F6', 'LEFT', '완벽한 시야!', '모든 것을 볼 수 있습니다.', 190, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+
+(106, 206, 'G7', 'RIGHT', '환상적인 경기!', '가장 좋은 위치!', 170, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+
+(107, 207, 'H8', 'LEFT', '스릴 넘치는 게임!', '놓칠 수 없는 자리!', 180, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+
+(108, 208, 'I9', 'RIGHT', '가장 가까운 자리!', '경기장 바로 앞!', 220, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+
+(109, 209, 'J10', 'LEFT', '전체 시야 확보!', '경기를 한눈에 볼 수 있습니다.', 200, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+
+(110, 210, 'K11', 'RIGHT', '현장감 넘치는 자리!', '경기장 바로 옆!', 230, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+
+(111, 211, 'L12', 'LEFT', '박진감 넘치는 경기!', '놓칠 수 없는 위치!', 175, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+
+(112, 212, 'M13', 'RIGHT', '완벽한 시야 확보!', '경기를 가장 잘 볼 수 있는 자리!', 185, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 # 3. 
 DROP TABLE IF EXISTS Profiles;
