@@ -6,9 +6,9 @@
 --  
 use yamanin_db;
 
-# 1. User Table 생성a
-DROP TABLE IF EXISTS User;
-CREATE TABLE User (
+# 1. User Table 생성
+DROP TABLE IF EXISTS user;
+CREATE TABLE user (
     user_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     login_id VARCHAR(20) NOT NULL,
     password VARCHAR(30) NOT NULL,
@@ -21,13 +21,13 @@ CREATE TABLE User (
     nickName VARCHAR(20)
 );
 
-INSERT INTO User (login_id, password, name, phone, email, age, gender, nickName) 
+INSERT INTO user (login_id, password, name, phone, email, age, gender, nickName) 
 VALUES 
     ('john_doe', 'jd2024!', 'John Doe', '123-456-7890', 'john.doe@example.com', 28, 'M', 'Johnny'),
     ('jane_doe', 'password123', 'Jane Doe', '321-654-0987', 'jane.doe@example.com', 32, 'F', 'Jany'),
     ('sam_smith', 'samsam', 'Sam Smith', '456-123-6789', 'sam.smith@example.com', 24, 'M', 'SSmith');
     
-# select * from user;
+select * from user;
 
 # 2. PostItem Table 생성
 DROP TABLE IF EXISTS post_items;
@@ -68,6 +68,8 @@ VALUES
 
 (112, 212, 'M13', 'RIGHT', '완벽한 시야 확보!', '경기를 가장 잘 볼 수 있는 자리!', 185, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
+select * from post_items;
+
 # 3. 
 DROP TABLE IF EXISTS Profiles;
 
@@ -105,7 +107,7 @@ VALUES
 (2, 'How to improve shooting skills?', 'ANSWER', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (3, 'Recommended gear for beginners?', 'ANSWER', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-select * from question;
+# select * from question;
 
 
 # 5. bookList
@@ -148,7 +150,7 @@ VALUES
 (2, 202, 'Book seats for championship game', 'unread', CURRENT_TIMESTAMP),
 (3, 203, 'Booking for local tournament', 'unread', CURRENT_TIMESTAMP);
 
-SELECT * FROM alarm;
+# SELECT * FROM alarm;
 
 # 7. MannerTemp
 DROP TABLE IF EXISTS manner_temp;

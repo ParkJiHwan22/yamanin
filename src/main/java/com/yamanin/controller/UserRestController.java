@@ -52,8 +52,9 @@ public class UserRestController {
 	@PutMapping("/modifyuser")
 	public ResponseEntity<String> update(@RequestBody User user) {
 		userService.modifyUser(user);
-		if (userService.modifyUser(user))
+		if (userService.modifyUser(user)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
 	}
 

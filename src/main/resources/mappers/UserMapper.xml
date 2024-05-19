@@ -5,26 +5,27 @@
 <mapper namespace="com.yamanin.model.dao.UserDao">
     <!-- 유저 id로 조회 -->
     <select id="selectOne" parameterType="int" resultType="User">
-        SELECT * FROM user
-        WHERE userId = #{userId};
+        SELECT *
+        FROM user
+        WHERE user_id = #{userId};
     </select>
 
-	<!-- 유저 등록 -->
-	<insert id="insertUser" parameterType="User" keyProperty="userId" useGeneratedKeys="true">
-		INSERT INTO user (userId, loginId, password, name, phone, email, createdDate, age, gender, nickName)
-		VALUES (#{userId}, #{loginId}, #{password}, #{name}, #{phone}, #{email}, CURRENT_TIMESTAMP(), #{age}, #{gender}, #{nickName});
-	</insert>
-	
-	<!-- 유저 수정 -->
-	<update id="updateUser" parameterType="User">
-		UPDATE user
-		SET loginId = #{loginId}, password = #{password}, name = #{name}, phone = #{phone}, email = #{email}, age = #{age}, gender = #{gender}, nickName = #{nickName}
-		WHERE userId = #{userId};
-	</update>
-	
-	<!-- 게시글 삭제  -->
-	<delete id="deleteUser" parameterType="int">
-		DELETE FROM user
-		WHERE userId = #{userId};
-	</delete>
+    <!-- 유저 등록 -->
+    <insert id="insertUser" parameterType="User" keyProperty="userId" useGeneratedKeys="true">
+        INSERT INTO user (login_id, password, name, phone, email, age, gender, nickName)
+        VALUES (#{loginId}, #{password}, #{name}, #{phone}, #{email}, #{age}, #{gender}, #{nickName});
+    </insert>
+
+    <!-- 유저 수정 -->
+    <update id="updateUser" parameterType="User">
+        UPDATE user
+        SET login_id = #{loginId}, password = #{password}, name = #{name}, phone = #{phone}, email = #{email}, age = #{age}, gender = #{gender}, nickName = #{nickName}
+        WHERE user_id = #{userId};
+    </update>
+    
+    <!-- 유저 삭제 -->
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM user
+        WHERE user_id = #{userId};
+    </delete>
 </mapper>
