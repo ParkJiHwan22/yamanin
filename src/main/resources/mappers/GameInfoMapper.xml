@@ -14,8 +14,8 @@
 
     <!-- 리뷰 생성 -->
     <insert id="insertGameInfo" parameterType="GameInfo" useGeneratedKeys="true" keyProperty="gameId">
-        INSERT INTO review (game_id, Game_DT, homeTeam, awayTeam, homeScore, awayScore, game_place)
-        VALUES (#{gameId}, #{gameDT}, #{homeTeam}, #{awayTeam}, #{homeScore}, #{awayScore}, #{gamePlace});
+        INSERT INTO review (game_id, Game_DT, homeTeam, awayTeam, homeScore, awayScore, game_place, game_status)
+        VALUES (#{gameId}, #{gameDT}, #{homeTeam}, #{awayTeam}, #{homeScore}, #{awayScore}, #{gamePlace}, #{gameStatus});
     </insert>
 
     <!-- 리뷰 삭제 -->
