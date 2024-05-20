@@ -1,22 +1,48 @@
 package com.yamanin.model.dto;
 
+import jakarta.persistence.*;
+import lombok.Data;
+import java.util.Date;
+
+@Data
+@Entity
+@Table(name = "User")
 public class User {
-	private int userId;
-	private String loginId;
-	private String password;
-	private String name;
-	private String phone;
-	private String email;
-	private String createdDate;
-	private int age;
-	private boolean gender;
-	private String nickName;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int userId;
+
+    @Column(nullable = false, length = 20, unique = true)
+    private String loginId;
+
+    @Column(nullable = false, length = 30)
+    private String password;
+
+    @Column(length = 30)
+    private String name;
+
+    @Column(length = 20)
+    private String phone;
+
+    @Column(length = 30)
+    private String email;
+
+    @Column(name = "created_date", updatable = false, insertable = false, columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
+    private String createdDate;
+
+    private Integer age;
+
+    @Column(length = 1)
+    private int gender;
+
+    @Column(length = 20)
+    private String nickName;
 	
 	public User() {
 	}
 
 	public User(int userId, String loginId, String password, String name, String phone, String email,
-			String createdDate, int age, boolean gender, String nickName) {
+			String createdDate, int age, int gender, String nickName) {
 		this.userId = userId;
 		this.loginId = loginId;
 		this.password = password;
@@ -93,11 +119,11 @@ public class User {
 		this.age = age;
 	}
 
-	public boolean isGender() {
+	public int isGender() {
 		return gender;
 	}
 
-	public void setGender(boolean gender) {
+	public void setGender(int gender) {
 		this.gender = gender;
 	}
 

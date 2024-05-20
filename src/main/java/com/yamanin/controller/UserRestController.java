@@ -1,69 +1,82 @@
 package com.yamanin.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.yamanin.model.dto.User;
 import com.yamanin.model.service.UserService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/user")
 @Tag(name = "UserRestController", description = "유저 CRUD")
-
+@CrossOrigin(origins = "http://localhost:5173")
 public class UserRestController {
-	// 응답을 편하게 하기 위해 상수로 지정
-	private static final String SUCCESS = "success";
-	private static final String FAIL = "fail";
-	
-	private final UserService userService;
-	
-	@Autowired
-	public UserRestController(UserService userService) {
-		this.userService = userService;
-	}
-	
-	// 유저 ID로 검색
-	@GetMapping("/{userId}")
-	public ResponseEntity<User> getUserById(@PathVariable("userId") int userId) {
+    private static final String SUCCESS = "success";
+    private static final String FAIL = "fail";
+
+    private final UserService userService;
+    private static final Logger logger = LoggerFactory.getLogger(UserRestController.class);
+
+    @Autowired
+    public UserRestController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestParam String loginId, @RequestParam String password) {
+        logger.info("Login attempt with loginId: {}", loginId);
+
+        Optional<User> userOpt = userService.findByLoginId(loginId);
+        logger.info("User found: {}", userOpt);
+
+        if (userOpt.isPresent()) {
+            User user = userOpt.get();
+            if (user.getPassword().equals(password)) {
+                logger.info("Login successful for user: {}", loginId);
+                return ResponseEntity.ok("Login successful");
+            } else {
+                logger.warn("Login failed: Incorrect password for user: {}", loginId);
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed: Incorrect password");
+            }
+        } else {
+            logger.warn("Login failed: User not found for loginId: {}", loginId);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed: User not found");
+        }
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<User> getUserById(@PathVariable("userId") int userId) {
         User user = userService.getUserById(userId);
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
     }
-	
-	// 유저 등록 (JSON형태로 보낸다)
-	@PostMapping("/adduser")
-	public ResponseEntity<?> write(@RequestBody User user) {
-		userService.writeUser(user);
-		return new ResponseEntity<User>(user, HttpStatus.CREATED);
-	}
 
-	// 게시글 수정 (JSON형태로 보낸다) 경로 중요
-//	@PutMapping("/modifyuser/{id}") --> PathVariable 처리와 ID 추가 작업 필요
-	@PutMapping("/modifyuser")
-	public ResponseEntity<String> update(@RequestBody User user) {
-		userService.modifyUser(user);
-		if (userService.modifyUser(user)) {
-			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-		}
-		return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
-	}
+    @PostMapping("/adduser")
+    public ResponseEntity<User> write(@RequestBody User user) {
+        userService.writeUser(user);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
 
-	// 게시글 삭제
-	@DeleteMapping("/user/{userId}")
-	public ResponseEntity<String> delete(@PathVariable("userId") int id) {
-		if (userService.removeUser(id))
-			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-		return new ResponseEntity<String>(FAIL, HttpStatus.NOT_FOUND);
-	}
+    @PutMapping("/modifyuser")
+    public ResponseEntity<String> update(@RequestBody User user) {
+        if (userService.modifyUser(user)) {
+            return new ResponseEntity<>(SUCCESS, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(FAIL, HttpStatus.BAD_REQUEST);
+    }
 
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<String> delete(@PathVariable("userId") int id) {
+        if (userService.removeUser(id)) {
+            return new ResponseEntity<>(SUCCESS, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(FAIL, HttpStatus.NOT_FOUND);
+    }
 }
