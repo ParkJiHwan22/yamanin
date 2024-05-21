@@ -1,9 +1,15 @@
 package com.yamanin.model.service;
 
+import java.util.List;
+
+import com.yamanin.model.dto.PostItem;
 import com.yamanin.model.dto.User;
 import com.yamanin.model.dto.UserLoginDto;
 
 public interface UserService {
+	 // 유저 전체 조회
+	List<User> getAllUser();
+
 	// 유저 1명만 아이디로 조회
 	User getUserById(int userId); 
 
