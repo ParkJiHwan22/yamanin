@@ -95,7 +95,7 @@ public class UserRestController {
 		result.put("name", dbUser.getName());
 		result.put("userId", userId);
 		
-		
+		System.out.println(result);
 		return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
 	}
 
