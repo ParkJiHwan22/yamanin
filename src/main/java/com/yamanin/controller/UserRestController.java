@@ -2,6 +2,7 @@ package com.yamanin.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.json.simple.parser.ParseException;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yamanin.model.dto.PostItem;
 import com.yamanin.model.dto.User;
 import com.yamanin.model.dto.UserLoginDto;
 import com.yamanin.model.service.UserService;
@@ -98,7 +100,14 @@ public class UserRestController {
 		System.out.println(result);
 		return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
 	}
-
+	
+	// 모든 유저 검색
+    @GetMapping("/")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUser();
+        return ResponseEntity.ok(users);
+    }
+	
 	// 유저 ID로 검색
 	@GetMapping("/{userId}")
 	public ResponseEntity<User> getUserById(@PathVariable("userId") int userId) {
