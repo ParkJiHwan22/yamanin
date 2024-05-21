@@ -14,6 +14,7 @@ public class User {
 	
 	public User() {
 	}
+	
 
 	public User(int userId, String loginId, String password, String name, String phone, String email,
 			String createdDate, int age, boolean gender, String nickName) {
