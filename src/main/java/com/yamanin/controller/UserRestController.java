@@ -71,6 +71,8 @@ public class UserRestController {
 		String accessToken = jwtUtil.createAccessToken(dbUser.getLoginId());
 		String refreshToken = jwtUtil.createRefreshToken(dbUser.getLoginId());
 		
+		int userId = dbUser.getUserId();
+		
 		// refreshtoken은 처음 발급할 때 -> DB에 저장.
 		// INSERT INTO `refresh-token` (userId, refreshToken)  VALUE (#{userId}, #{refreshToken}) 
 		
@@ -91,6 +93,7 @@ public class UserRestController {
 		
 		result.put("accessToken", accessToken);
 		result.put("name", dbUser.getName());
+		result.put("userId", userId);
 		
 		
 		return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
