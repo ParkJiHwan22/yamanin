@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.yamanin.model.dao.UserDao;
 import com.yamanin.model.dto.User;
+import com.yamanin.model.dto.UserLoginDto;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -38,5 +39,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean removeUser(int userId) {
 		return userDao.deleteUser(userId) == 1;
+	}
+
+	@Override
+	public User loginUser(UserLoginDto user) {
+		return userDao.loginUser(user);
 	}
 }

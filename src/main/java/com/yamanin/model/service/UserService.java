@@ -1,6 +1,7 @@
 package com.yamanin.model.service;
 
 import com.yamanin.model.dto.User;
+import com.yamanin.model.dto.UserLoginDto;
 
 public interface UserService {
 	// 유저 1명만 아이디로 조회
@@ -14,4 +15,6 @@ public interface UserService {
 
 	// 유저 수정
 	boolean modifyUser(User user);
+	
+	User loginUser(UserLoginDto user);
 }
