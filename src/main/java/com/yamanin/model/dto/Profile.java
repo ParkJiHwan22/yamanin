@@ -2,7 +2,7 @@ package com.yamanin.model.dto;
 
 public class Profile {
     private int userId;
-    private byte[] profileImg;
+    private byte[] file;
     private String profileText;
     private String supportTeam;
 
@@ -11,7 +11,7 @@ public class Profile {
 
     public Profile(int userId, byte[] profileImg, String profileText, String supportTeam) {
         this.userId = userId;
-        this.profileImg = profileImg;
+        this.file = profileImg;
         this.profileText = profileText;
         this.supportTeam = supportTeam;
     }
@@ -25,11 +25,11 @@ public class Profile {
     }
 
     public byte[] getProfileImg() {
-        return profileImg;
+        return file;
     }
 
     public void setProfileImg(byte[] profileImg) {
-        this.profileImg = profileImg;
+        this.file = profileImg;
     }
 
     public String getProfileText() {
