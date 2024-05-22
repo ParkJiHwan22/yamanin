@@ -17,15 +17,17 @@ CREATE TABLE user (
     email VARCHAR(30),
     created_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     age INT,
-    gender ENUM('M', 'F'),
+    gender INT,
     nickName VARCHAR(20)
 );
 
 INSERT INTO user (login_id, password, name, phone, email, age, gender, nickName) 
 VALUES 
-    ('john_doe', 'jd2024!', 'John Doe', '123-456-7890', 'john.doe@example.com', 28, 'M', 'Johnny'),
-    ('jane_doe', 'password123', 'Jane Doe', '321-654-0987', 'jane.doe@example.com', 32, 'F', 'Jany'),
-    ('sam_smith', 'samsam', 'Sam Smith', '456-123-6789', 'sam.smith@example.com', 24, 'M', 'SSmith');
+    ('john_doe', 'jd2024!', 'John Doe', '123-456-7890', 'john.doe@example.com', 28, 1, 'Johnny'),
+    ('jane_doe', 'password123', 'Jane Doe', '321-654-0987', 'jane.doe@example.com', 32, 0, 'Jany'),
+    ('sam_smith', 'samsam', 'Sam Smith', '456-123-6789', 'sam.smith@example.com', 24, 1, 'SSmith'),
+    ('11', '22', 'Sam Smith', '456-123-6789', 'sam.smith@example.com', 24, 1, 'SSmith'),
+    ('22', '33', 'Jane Doe', '321-654-0987', 'jane.doe@example.com', 32, 0, 'Jany');
     
 select * from user;
 
@@ -71,16 +73,16 @@ VALUES
 select * from post_items;
 
 # 3. 
-DROP TABLE IF EXISTS Profiles;
+DROP TABLE IF EXISTS Profile;
 
-CREATE TABLE Profiles (
+CREATE TABLE Profile (
     userId INT PRIMARY KEY,
-    profileImg BLOB,
+    profileImg MEDIUMBLOB,
     profileText TEXT,
     supportTeam VARCHAR(255)
 );
 
-INSERT INTO Profiles (userId, profileImg, profileText, supportTeam)
+INSERT INTO Profile (userId, profileImg, profileText, supportTeam)
 VALUES
 (1, 'binary_data_here', 'Life-long fan of the team.', 'Team A'),
 
@@ -88,6 +90,8 @@ VALUES
 
 (3, 'binary_data_here', 'Supporting since childhood.', 'Team C');
 
+-- (4, 'binary_data_here', 'Supporting since childhood.', 'Team C');
+SELECT * FROM Profile;
 
 # 4. question table
 

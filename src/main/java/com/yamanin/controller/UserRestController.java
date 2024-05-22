@@ -97,7 +97,7 @@ public class UserRestController {
 		result.put("name", dbUser.getName());
 		result.put("userId", userId);
 		
-		System.out.println(result);
+//		System.out.println(result);
 		return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
 	}
 	
@@ -107,6 +107,7 @@ public class UserRestController {
         List<User> users = userService.getAllUser();
         return ResponseEntity.ok(users);
     }
+    
 	
 	// 유저 ID로 검색
 	@GetMapping("/{userId}")
@@ -114,6 +115,13 @@ public class UserRestController {
         User user = userService.getUserById(userId);
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
     }
+	
+	// 유저 LoginID로 검색
+		@GetMapping("/lid/{loginId}")
+		public ResponseEntity<User> getUserByLoginId(@PathVariable("loginId") String loginId) {
+	        User user = userService.getUserByLoginId(loginId);
+	        return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
+	    }
 
 	// 유저 등록 (JSON형태로 보낸다)
 	@PostMapping("/adduser")
