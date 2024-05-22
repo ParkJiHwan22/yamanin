@@ -30,6 +30,11 @@ public class UserServiceImpl implements UserService {
 	public User getUserById(int userId) {
 		return userDao.selectOne(userId);
 	}
+	
+	@Override
+	public User getUserByLoginId(String loginId) {
+		return userDao.selectOneByLoginId(loginId);
+	}
 
 	// 유저 작성
 	@Override

@@ -6,8 +6,8 @@
 
     <!-- 유저 프로필 등록 -->
     <insert id="insertProfile" parameterType="Profile" useGeneratedKeys="true" keyProperty="userId">
-        INSERT INTO profile (userId, profile_img, profile_text, support_team)
-        VALUES (#{userId}, #{profileImg}, #{profileText}, #{supportTeam});
+        INSERT INTO profile (userId, profileImg, profileText, supportTeam)
+        VALUES (#{userId}, #{file}, #{profileText}, #{supportTeam});
     </insert>
 
     <!-- 유저 프로필 id로 조회 -->
@@ -19,7 +19,7 @@
     <!-- 유저 프로필 수정 -->
     <update id="updateProfile" parameterType="Profile">
         UPDATE profile
-        SET profile_img = #{profileImg}, profile_text = #{profileText}, support_team = #{supportTeam}
+        SET profileImg = #{profileImg}, profileText = #{profileText}, supportTeam = #{supportTeam}
         WHERE userId = #{userId};
     </update>
 

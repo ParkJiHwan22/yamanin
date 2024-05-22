@@ -13,6 +13,7 @@ public interface UserDao {
     
 	// 유저 프로필 id로 조회
 	User selectOne(int userId);
+	User selectOneByLoginId(String loginId);
 	
 	// 유저 등록
 	public int insertUser(User user);
