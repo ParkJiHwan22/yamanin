@@ -34,7 +34,7 @@ public class CommentController {
     }
 
     @GetMapping("/{commentId}")
-    public ResponseEntity<Comment> getCommentById(@PathVariable int commentId) {
+    public ResponseEntity<Comment> getCommentByCommentId(@PathVariable int commentId) {
         Comment comment = commentService.getCommentByCommentId(commentId);
         if (comment != null) {
             return ResponseEntity.ok(comment);

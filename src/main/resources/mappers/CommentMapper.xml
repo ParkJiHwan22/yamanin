@@ -8,14 +8,14 @@
     </select>
 
     <!-- 댓글 하나만 아이디로 조회 -->
-    <select id="selectByCommentId" parameterType="int" resultType="Comment">
+    <select id="selectById" parameterType="int" resultType="Comment">
         SELECT * FROM comment WHERE comment_id = #{commentId};
     </select>
 
     <!-- 댓글 생성 -->
     <insert id="insertComment" parameterType="Comment" useGeneratedKeys="true" keyProperty="commentId">
         INSERT INTO comment (post_id, user_id2, game_id2, comment_detail, created_date, updated_date)
-        VALUES (#{postId}, #{userId2}, #{gameId2}, #{commentDetail}, #{createdDate}, #{updatedDate});
+        VALUES (#{postId}, #{userId2}, #{gameId2}, #{commentDetail}, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
     </insert>
 
     <!-- 댓글 삭제 -->
