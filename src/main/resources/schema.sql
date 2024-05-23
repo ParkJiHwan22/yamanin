@@ -143,6 +143,21 @@ VALUES
 
 (3, 229, 'G7', 'RIGHT', '환상적인 경기!', '가장 좋은 위치!', 170, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
+(3, 270, 'G7', 'RIGHT', '환상적인 경기!', '가장 좋은 위치!', 170, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+
+(3, 270, 'G7', 'RIGHT', '환상적인 경기!', '가장 좋은 위치!', 18000, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+
+(4, 270, '이마트프랜들리존 15열', 'LEFT', '최고의 관람석!', '가장 좋은 위치!', 19000, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 270, '이마트프랜들리존 18열', 'RIGHT', '환상적인 경기!', '경기를 제대로 즐길 수 있는 자리', 20000, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3, 270, '이마트프랜들리존 20열', 'LEFT', '완벽한 경기 관람석!', '경기장이 한눈에 보이는 자리', 21000, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(1, 270, '이마트프랜들리존 22열', 'RIGHT', '가장 인기 있는 자리!', '경기장을 가장 잘 볼 수 있는 자리', 22000, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 270, '이마트프랜들리존 25열', 'LEFT', '경기를 즐길 수 있는 자리!', '가장 좋은 위치!', 23000, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3, 270, '이마트프랜들리존 27열', 'RIGHT', '환상적인 자리!', '경기를 가까이서 볼 수 있는 자리', 24000, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 270, '이마트프랜들리존 30열', 'LEFT', '최고의 경기장 위치!', '가장 좋은 위치!', 25000, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(1, 270, '이마트프랜들리존 32열', 'RIGHT', '완벽한 경기 관람석!', '경기를 제대로 즐길 수 있는 자리', 26000, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 270, '이마트프랜들리존 35열', 'LEFT', '가장 좋은 자리!', '경기장이 한눈에 보이는 자리', 27000, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3, 270, '이마트프랜들리존 37열', 'RIGHT', '인기 있는 관람석!', '경기장을 가장 잘 볼 수 있는 자리', 28000, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+
 (3, 333, 'H8', 'LEFT', '스릴 넘치는 게임!', '놓칠 수 없는 자리!', 180, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
 (3, 432, 'I9', 'RIGHT', '가장 가까운 자리!', '경기장 바로 앞!', 220, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
