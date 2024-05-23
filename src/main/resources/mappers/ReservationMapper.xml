@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yamanin.model.dao.ReservationDao">
+    <resultMap id="reservationResultMap" type="com.yamanin.model.dto.Reservation">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="game_id" property="gameId"/>
+        <result column="user_name" property="userName"/>
+        <result column="is_author" property="isAuthor"/>
+    </resultMap>
+
+    <select id="selectReservationsByGameId" resultMap="reservationResultMap">
+        SELECT * FROM reservations WHERE game_id = #{gameId}
+    </select>
+
+    <insert id="insertReservation" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO reservations (user_id, game_id, user_name, is_author)
+        VALUES (#{userId}, #{gameId}, #{userName}, #{isAuthor})
+    </insert>
+
+    <delete id="deleteReservation">
+        DELETE FROM reservations WHERE id = #{reservationId}
+    </delete>
+</mapper>
