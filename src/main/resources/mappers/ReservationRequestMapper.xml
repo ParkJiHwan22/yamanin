@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yamanin.model.dao.ReservationRequestDao">
+    <resultMap id="reservationRequestResultMap" type="com.yamanin.model.dto.ReservationRequest">
+        <id column="id" property="id"/>
+        <result column="post_id" property="postId"/>
+        <result column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="request_date" property="requestDate"/>
+    </resultMap>
+
+    <insert id="insertReservationRequest" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO reservation_requests (post_id, user_id, user_name, request_date)
+        VALUES (#{postId}, #{userId}, #{userName}, NOW())
+    </insert>
+
+    <select id="selectReservationRequestsByPostId" resultMap="reservationRequestResultMap">
+        SELECT * FROM reservation_requests WHERE post_id = #{postId}
+    </select>
+
+    <select id="selectReservationRequestById" resultMap="reservationRequestResultMap">
+        SELECT * FROM reservation_requests WHERE id = #{requestId}
+    </select>
+
+    <delete id="deleteReservationRequest">
+        DELETE FROM reservation_requests WHERE id = #{requestId}
+    </delete>
+</mapper>

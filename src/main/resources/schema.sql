@@ -34,6 +34,88 @@ VALUES
 --     (103, 'john_doe1', 'jd2024!', 'John Doe', '123-456-7890', 'john.doe@example.com', 28, 1, 'Johnny');
 select * from user;
 
+DROP TABLE IF EXISTS reservation_requests;
+CREATE TABLE reservation_requests (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    post_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    user_name VARCHAR(255),
+    request_date DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+select * from reservation_requests;
+
+
+DROP TABLE IF EXISTS reservations;
+CREATE TABLE reservations (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    game_id BIGINT NOT NULL,
+    user_name VARCHAR(255),
+    is_author BOOLEAN DEFAULT FALSE
+);
+
+select * from reservations;
+
+-- post_items 테이블의 데이터를 기반으로 reservations 테이블에 예시 데이터 추가
+-- 예시 데이터 삽입
+
+-- gameId 203의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (1, 203, 'Johnny', TRUE),  -- 작성자
+    (2, 203, 'Jany', FALSE),   -- Jane Doe 참여
+    (3, 203, 'SSmith', FALSE); -- Sam Smith 참여
+
+-- gameId 204의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (2, 204, 'Jany', TRUE),    -- 작성자
+    (1, 204, 'Johnny', FALSE), -- John Doe 참여
+    (4, 204, 'SSmith2', FALSE);-- Sam Smith2 참여
+
+-- gameId 218의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (2, 218, 'Jany', TRUE),    -- 작성자
+    (3, 218, 'SSmith', FALSE); -- Sam Smith 참여
+
+-- gameId 229의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (3, 229, 'SSmith', TRUE),  -- 작성자
+    (1, 229, 'Johnny', FALSE); -- John Doe 참여
+
+-- gameId 333의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (3, 333, 'SSmith', TRUE),  -- 작성자
+    (5, 333, 'Jany', FALSE);   -- Jane Doe 참여
+
+-- gameId 432의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (3, 432, 'SSmith', TRUE),  -- 작성자
+    (2, 432, 'Jany', FALSE);   -- Jane Doe 참여
+
+-- gameId 454의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (3, 454, 'SSmith', TRUE),  -- 작성자
+    (1, 454, 'Johnny', FALSE), -- John Doe 참여
+    (4, 454, 'SSmith2', FALSE);-- Sam Smith2 참여
+
+-- gameId 555의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (4, 555, 'SSmith2', TRUE), -- 작성자
+    (2, 555, 'Jany', FALSE);   -- Jane Doe 참여
+
+-- gameId 559의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (4, 559, 'SSmith2', TRUE), -- 작성자
+    (3, 559, 'SSmith', FALSE); -- Sam Smith 참여
+
+-- gameId 600의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (5, 600, 'Jany', TRUE),    -- 작성자
+    (1, 600, 'Johnny', FALSE), -- John Doe 참여
+    (3, 600, 'SSmith', FALSE); -- Sam Smith 참여
+
+
+
+
 # 2. PostItem Table 생성
 DROP TABLE IF EXISTS post_items;
 CREATE TABLE post_items (
