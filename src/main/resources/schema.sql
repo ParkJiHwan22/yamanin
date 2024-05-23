@@ -26,10 +26,95 @@ VALUES
     ('john_doe', 'jd2024!', 'John Doe', '123-456-7890', 'john.doe@example.com', 28, 1, 'Johnny'),
     ('jane_doe', 'password123', 'Jane Doe', '321-654-0987', 'jane.doe@example.com', 32, 0, 'Jany'),
     ('sam_smith', 'samsam', 'Sam Smith', '456-123-6789', 'sam.smith@example.com', 24, 1, 'SSmith'),
-    ('11', '22', 'Sam Smith', '456-123-6789', 'sam.smith@example.com', 24, 1, 'SSmith'),
+    ('11', '22', 'Sam Smith', '456-123-6789', 'sam.smith@example.com', 24, 1, 'SSmith2'),
     ('22', '33', 'Jane Doe', '321-654-0987', 'jane.doe@example.com', 32, 0, 'Jany');
     
+-- INSERT INTO user (user_id, login_id, password, name, phone, email, age, gender, nickName) 
+-- VALUES 
+--     (103, 'john_doe1', 'jd2024!', 'John Doe', '123-456-7890', 'john.doe@example.com', 28, 1, 'Johnny');
 select * from user;
+
+DROP TABLE IF EXISTS reservation_requests;
+CREATE TABLE reservation_requests (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    post_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    user_name VARCHAR(255),
+    request_date DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+select * from reservation_requests;
+
+
+DROP TABLE IF EXISTS reservations;
+CREATE TABLE reservations (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    game_id BIGINT NOT NULL,
+    user_name VARCHAR(255),
+    is_author BOOLEAN DEFAULT FALSE
+);
+
+select * from reservations;
+
+-- post_items 테이블의 데이터를 기반으로 reservations 테이블에 예시 데이터 추가
+-- 예시 데이터 삽입
+
+-- gameId 203의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (1, 203, 'Johnny', TRUE),  -- 작성자
+    (2, 203, 'Jany', FALSE),   -- Jane Doe 참여
+    (3, 203, 'SSmith', FALSE); -- Sam Smith 참여
+
+-- gameId 204의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (2, 204, 'Jany', TRUE),    -- 작성자
+    (1, 204, 'Johnny', FALSE), -- John Doe 참여
+    (4, 204, 'SSmith2', FALSE);-- Sam Smith2 참여
+
+-- gameId 218의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (2, 218, 'Jany', TRUE),    -- 작성자
+    (3, 218, 'SSmith', FALSE); -- Sam Smith 참여
+
+-- gameId 229의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (3, 229, 'SSmith', TRUE),  -- 작성자
+    (1, 229, 'Johnny', FALSE); -- John Doe 참여
+
+-- gameId 333의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (3, 333, 'SSmith', TRUE),  -- 작성자
+    (5, 333, 'Jany', FALSE);   -- Jane Doe 참여
+
+-- gameId 432의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (3, 432, 'SSmith', TRUE),  -- 작성자
+    (2, 432, 'Jany', FALSE);   -- Jane Doe 참여
+
+-- gameId 454의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (3, 454, 'SSmith', TRUE),  -- 작성자
+    (1, 454, 'Johnny', FALSE), -- John Doe 참여
+    (4, 454, 'SSmith2', FALSE);-- Sam Smith2 참여
+
+-- gameId 555의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (4, 555, 'SSmith2', TRUE), -- 작성자
+    (2, 555, 'Jany', FALSE);   -- Jane Doe 참여
+
+-- gameId 559의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (4, 559, 'SSmith2', TRUE), -- 작성자
+    (3, 559, 'SSmith', FALSE); -- Sam Smith 참여
+
+-- gameId 600의 예약자 리스트
+INSERT INTO reservations (user_id, game_id, user_name, is_author) VALUES 
+    (5, 600, 'Jany', TRUE),    -- 작성자
+    (1, 600, 'Johnny', FALSE), -- John Doe 참여
+    (3, 600, 'SSmith', FALSE); -- Sam Smith 참여
+
+
+
 
 # 2. PostItem Table 생성
 DROP TABLE IF EXISTS post_items;
@@ -50,25 +135,25 @@ CREATE TABLE post_items (
 
 INSERT INTO post_items (userId, gameId, seatInfo, seatType, title, detail, price, ticketImg, viewCnt, createdDate, updatedDate)
 VALUES
-(103, 203, 'D4', 'LEFT', '흥미진진한 경기!', '최고의 자리입니다!', 160, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(1, 203, '318블록 14열', 'LEFT', '흥미진진한 경기! 같이 경기 보러 가실 분 구해요 !!', '이 자리는 경기장에서도 가장 인기가 많은 자리입니다. 선수들의 열정과 에너지를 바로 느낄 수 있는 곳으로, 모든 중요한 순간들을 생생하게 감상할 수 있습니다. 주변 관중들과 함께 환호하고 응원하는 재미도 느낄 수 있어, 경기의 열기를 온몸으로 체험할 수 있는 특별한 자리입니다. 경기를 즐기는 데 있어 최고의 선택이 될 것입니다. 놓치지 말고 꼭 체험해보세요!', 15000, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
-(104, 204, 'E5', 'RIGHT', '가까운 액션!', '사이드라인 바로 옆입니다.', 210, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 204, '321블록 22열', 'RIGHT', '가까운 액션!', '사이드라인 바로 옆입니다.', 15000, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
-(105, 205, 'F6', 'LEFT', '완벽한 시야!', '모든 것을 볼 수 있습니다.', 190, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 218, 'F6', 'LEFT', '완벽한 시야!', '모든 것을 볼 수 있습니다.', 190, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
-(106, 206, 'G7', 'RIGHT', '환상적인 경기!', '가장 좋은 위치!', 170, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3, 229, 'G7', 'RIGHT', '환상적인 경기!', '가장 좋은 위치!', 170, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
-(107, 207, 'H8', 'LEFT', '스릴 넘치는 게임!', '놓칠 수 없는 자리!', 180, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3, 333, 'H8', 'LEFT', '스릴 넘치는 게임!', '놓칠 수 없는 자리!', 180, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
-(108, 208, 'I9', 'RIGHT', '가장 가까운 자리!', '경기장 바로 앞!', 220, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3, 432, 'I9', 'RIGHT', '가장 가까운 자리!', '경기장 바로 앞!', 220, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
-(109, 209, 'J10', 'LEFT', '전체 시야 확보!', '경기를 한눈에 볼 수 있습니다.', 200, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3, 454, 'J10', 'LEFT', '전체 시야 확보!', '경기를 한눈에 볼 수 있습니다.', 200, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
-(110, 210, 'K11', 'RIGHT', '현장감 넘치는 자리!', '경기장 바로 옆!', 230, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(4, 555, 'K11', 'RIGHT', '현장감 넘치는 자리!', '경기장 바로 옆!', 230, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
-(111, 211, 'L12', 'LEFT', '박진감 넘치는 경기!', '놓칠 수 없는 위치!', 175, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(4, 559, 'L12', 'LEFT', '박진감 넘치는 경기!', '놓칠 수 없는 위치!', 175, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
-(112, 212, 'M13', 'RIGHT', '완벽한 시야 확보!', '경기를 가장 잘 볼 수 있는 자리!', 185, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+(5, 600, 'M13', 'RIGHT', '완벽한 시야 확보!', '경기를 가장 잘 볼 수 있는 자리!', 185, 'binary_data_here', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 select * from post_items;
 
@@ -92,7 +177,10 @@ VALUES
 
 (4, 'binary_data_here', 'Supporting since childhood.', 'Team C'),
 
-(5, 'binary_data_here', 'Supporting since childhood.', 'Team C');
+(5, 'binary_data_here', 'Supporting since childhood.', 'Team C'),
+
+(103, 'binary_data_here', 'Supporting since childhood.', 'Team C');
+
 SELECT * FROM Profile;
 
 # 4. question table
@@ -133,9 +221,9 @@ CREATE TABLE book_list (
 
 INSERT INTO book_list (post_id, user_id, game_id, book_user_id, book_detail, createdDate, UpdatedDate)
 VALUES
-(101, 1, 201, 1, 'Reservation for upcoming match', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-(102, 2, 202, 2, 'Book seats for championship game', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-(103, 3, 203, 3, 'Booking for local tournament', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+(1, 1, 201, 1, 'Reservation for upcoming match', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 2, 202, 2, 'Book seats for championship game', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3, 3, 203, 3, 'Booking for local tournament', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 # 6. Alarm
 
@@ -904,11 +992,12 @@ CREATE TABLE comment (
     updated_date DATETIME
 );
 
-INSERT INTO Comment (post_id, user_id2, game_id2, comment_detail, created_date, updated_date)
+INSERT INTO comment (post_id, user_id2, game_id2, comment_detail, created_date, updated_date)
 VALUES
-(101, 1001, 2001, 'This game is awesome!', '2024-05-15 10:00:00', '2024-05-15 10:00:00'),
-(102, 1002, 2002, 'Could be better.', '2024-05-15 11:00:00', '2024-05-15 11:30:00'),
-(103, 1003, 2003, 'Loved the new update!', '2024-05-15 12:00:00', '2024-05-15 12:00:00');
+(1, 2, 203, 'This game is awesome!', '2024-05-15 10:00:00', '2024-05-15 10:00:00'),
+(1, 3, 203, 'Could be better.', '2024-05-15 11:00:00', '2024-05-15 11:30:00'),
+(1, 4, 203, 'Loved the new update!', '2024-05-15 12:00:00', '2024-05-15 12:00:00');
+
 
 DROP TABLE IF EXISTS recomment;
 CREATE TABLE recomment (
