@@ -29,9 +29,6 @@ VALUES
     ('11', '22', 'Sam Smith', '456-123-6789', 'sam.smith@example.com', 24, 1, 'SSmith2'),
     ('22', '33', 'Jane Doe', '321-654-0987', 'jane.doe@example.com', 32, 0, 'Jany');
     
--- INSERT INTO user (user_id, login_id, password, name, phone, email, age, gender, nickName) 
--- VALUES 
---     (103, 'john_doe1', 'jd2024!', 'John Doe', '123-456-7890', 'john.doe@example.com', 28, 1, 'Johnny');
 select * from user;
 
 DROP TABLE IF EXISTS reservation_requests;
