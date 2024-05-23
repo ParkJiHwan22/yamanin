@@ -169,17 +169,16 @@ CREATE TABLE Profile (
 
 INSERT INTO Profile (userId, profileImg, profileText, supportTeam)
 VALUES
-(1, 'binary_data_here', 'Life-long fan of the team.', 'Team A'),
+(1, 'binary_data_here', 'Life-long fan of the team.', '두산'),
 
-(2, 'binary_data_here', 'Excited about every game!', 'Team B'),
+(2, 'binary_data_here', 'Excited about every game!', '삼성'),
 
-(3, 'binary_data_here', 'Supporting since childhood.', 'Team C'),
+(3, 'binary_data_here', 'Supporting since childhood.', 'LG'),
 
-(4, 'binary_data_here', 'Supporting since childhood.', 'Team C'),
+(4, 'binary_data_here', 'Supporting since childhood.', '두산'),
 
-(5, 'binary_data_here', 'Supporting since childhood.', 'Team C'),
+(5, 'binary_data_here', 'Supporting since childhood.', '');
 
-(103, 'binary_data_here', 'Supporting since childhood.', 'Team C');
 
 SELECT * FROM Profile;
 
