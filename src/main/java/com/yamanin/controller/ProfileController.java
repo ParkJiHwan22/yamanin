@@ -59,11 +59,15 @@ public class ProfileController {
     @GetMapping("/{userId}")
     public ResponseEntity<ProfileDto> getProfile(@PathVariable int userId) {
         Profile profile = profileService.getProfileById(userId);
-        ProfileDto profileDto = new ProfileDto();
-        profileDto.setUserId(profile.getUserId());
-        profileDto.setProfileImg(Base64.getEncoder().encodeToString(profile.getProfileImg()));
-        profileDto.setProfileText(profile.getProfileText());
-        profileDto.setSupportTeam(profile.getSupportTeam());
-        return ResponseEntity.ok(profileDto);
+        if (profile != null) {
+            ProfileDto profileDto = new ProfileDto();
+            profileDto.setUserId(profile.getUserId());
+            profileDto.setProfileImg(Base64.getEncoder().encodeToString(profile.getProfileImg()));
+            profileDto.setProfileText(profile.getProfileText());
+            profileDto.setSupportTeam(profile.getSupportTeam());
+            return ResponseEntity.ok(profileDto);
+        } else {
+            return ResponseEntity.status(404).body(null);
+        }
     }
 }
